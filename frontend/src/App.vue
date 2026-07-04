@@ -1,20 +1,26 @@
 <template>
-    <div class="min-h-screen bg-gray-100 p-6">
-        <div class="max-w-7xl mx-auto">
-            <h1 class="text-3xl font-bold text-gray-800 mb-2">👥 Employee Directory</h1>
-            <p class="text-gray-600 mb-6">Manage employee records with full CRUD operations</p>
+    <div class="app-container">
+        <div class="app-inner">
+            <div class="app-header">
+                <h1>👥 Employee Directory</h1>
+                <p>Manage employee records with full CRUD operations</p>
+            </div>
 
             <!-- Form -->
-            <EmployeeForm :initialData="editData" :isEdit="!!editData"
-                          @save="handleSave" @cancel="editData = null" />
+            <div class="card">
+                <EmployeeForm :initialData="editData" :isEdit="!!editData"
+                              @save="handleSave" @cancel="editData = null" />
+            </div>
 
             <!-- Controls -->
             <SearchSortControls :total="employees.length"
                                 @search="handleSearch" @sort="handleSort" />
 
             <!-- List -->
-            <EmployeeList :employees="filteredEmployees" :loading="loading" :error="error"
-                          @edit="handleEdit" @delete="handleDelete" />
+            <div class="card">
+                <EmployeeList :employees="filteredEmployees" :loading="loading" :error="error"
+                              @edit="handleEdit" @delete="handleDelete" />
+            </div>
         </div>
     </div>
 </template>
@@ -22,9 +28,9 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue';
 import api from './services/axios';
-import EmployeeList from './components/EmployeeList.vue';
+import EmployeeList from './components/Employeelist.vue';
 import EmployeeForm from './components/EmployeeForm.vue';
-import SearchSortControls from './components/SearchSortControls.vue';
+import SearchSortControls from './components/SearchsortControls.vue';
 
 const employees = ref([]);
 const loading = ref(false);
